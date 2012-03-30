@@ -1,0 +1,14 @@
+<h1>Home#index</h1>
+<div class="span-24 last">
+	<%= link_to "Login", :controller => "home", :action => "login" if !@user %>
+	<%= link_to "Signup", :controller => "home", :action => "signup" if !@user %>
+	<%= link_to "Logout", :controller => "home", :action => "logout" if @user %>
+	<%= link_to "About", :controller => "home", :action => "about" %>
+	<%= mail_to "luis.capra@gmail.com", "Feedback", :encode => "javascript" if @user %>
+	<%= "Welcome: #{@user.name}" if @user %>			
+</div>
+
+
+
+
+

@@ -1,0 +1,16 @@
+<%= form_for @user, :url => users_login_path(@user) do |f| %>
+<fieldset>
+	<legend>Login</legend>
+	<p>
+	<%= f.label :name %> <br /> 
+	<%= f.text_field :name %>
+	</p>
+	<p>
+	<%= f.label :password %> <br />
+	<%= f.password_field :password %>
+	</p>
+	<p>
+	<%= f.submit "Submit" %>  
+	</p>
+</fieldset>
+<% end %>

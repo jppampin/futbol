@@ -1,0 +1,16 @@
+<%= form_for @user do |f| %>
+<fieldset>
+	<legend>Signup</legend>
+	<p>
+	<%= f.label :name, "Name" %> <br />
+	<%= f.text_field :name %>
+	</p>
+	<p>
+	<%= f.label :password, "Password" %> <br />
+	<%= f.text_field :password %>
+	</p>
+	<p>
+	<%= f.submit "Submit", :disable_with => 'Submiting...' %>  
+	</p>
+</fieldset>
+<% end %>

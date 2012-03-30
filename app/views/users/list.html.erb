@@ -1,0 +1,22 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<caption><em>User's List</em></caption>
+	<thead>
+		<tr>
+			<th class="span-4">Name</th>
+			<th class="span-4 last">Password</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="2">Total: <%= "#{@users.count}" %></td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<% @users.each do |u| %>
+		<tr>
+			<td><%= u.name %></td>
+			<td><%= u.password %></td>
+		</tr>
+		<% end if @users %>
+	</tbody>
+</table>

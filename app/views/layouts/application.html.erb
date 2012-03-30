@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>La Cancha de tu hermana!</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+	<link rel=”stylesheet” href=”stylesheets/blueprint/screen.css” type=”text/css” media=”screen, projection”>
+	<link rel=”stylesheet” href=”stylesheets/blueprint/print.css” type=”text/css” media=”print”>
+	<!–[if IE]><link rel=”stylesheet” href=”stylesheets/blueprint/ie.css” type=”text/css” media=”screen, projection”><![endif]–>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<% if SessionBag.get_error(flash) %>
+    <div class="error">
+      <%= SessionBag.get_error(flash) %>
+    </div>
+	<% end %>
+	<div class="container">
+		<%= yield %>
+	</div>
+</body>
+</html>
