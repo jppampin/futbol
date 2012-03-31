@@ -1,11 +1,11 @@
 class SessionBag
   
   def self.get_current_user(session)
-    session[:current_user]
+    User.find_by_id(session[:current_user])
   end
   
   def self.set_current_user(session, current_user)
-    session[:current_user] = current_user
+    session[:current_user] = current_user.id
   end
   
   def self.clean_current_user(session)
