@@ -4,6 +4,18 @@ class HomeController < ApplicationController
     
   def index
     @user = SessionBag.get_current_user(session)
+    
+    #user = User.first
+    #player = Player.new
+    #user.players << player
+    #player.user = user
+    #match = Match.new
+    #match.name = "this is a test"
+    #match.players << player
+    #match.save
+    
+    
+    
   end
   
   def login

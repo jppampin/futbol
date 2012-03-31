@@ -2,6 +2,7 @@
 	<caption><em>User's List</em></caption>
 	<thead>
 		<tr>
+			<th class="span-4">Email</th>
 			<th class="span-4">Name</th>
 			<th class="span-4 last">Password</th>
 		</tr>
@@ -14,6 +15,7 @@
 	<tbody>
 		<% @users.each do |u| %>
 		<tr>
+			<td><%= u.email %></td>
 			<td><%= u.name %></td>
 			<td><%= u.password %></td>
 		</tr>
