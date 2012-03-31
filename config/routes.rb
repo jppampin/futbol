@@ -8,6 +8,10 @@ Futbol::Application.routes.draw do
   get "home/signup"
   get "home/about"
 
+  get "home/add_user_to_match"
+  get "home/cancel_player_to_match"
+  get "home/confirm_player_to_match"
+  get "home/new_match"
   get "users/list"
 
   match "users/login", :to => "users#login"

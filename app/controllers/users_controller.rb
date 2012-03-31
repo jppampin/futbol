@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :require_login
+  before_filter :require_admin
   skip_before_filter :require_login, :only => [:create, :login]
+  skip_before_filter :require_admin, :only => [:create, :login]
   
   def create
     user = User.new(params[:user])
