@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
+  before_filter :require_login
+  skip_before_filter :require_login, :only => [:create, :login]
+  
   def create
     user = User.new(params[:user])
-    
-    if User.find_by_name(user.name)
-      SessionBag.set_error(flash, "user already exists")
+
+    if user.save
+      SessionBag.set_current_user(session, user)
     else
-      if user.save
-        SessionBag.set_current_user(session, user)
-      else
-        SessionBag.set_error(flash, "could not save new user")
-      end
+      SessionBag.set_error(flash, user.errors.first[1])
     end
-    
+
     redirect_to root_url
   end
   
@@ -19,12 +18,9 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     user = User.find_by_name_and_password(user.name, user.password)
     
-    if user
-      SessionBag.set_current_user(session, user)
-    else
-      SessionBag.set_error(flash, "login fail")
-    end
-    
+    SessionBag.set_current_user(session, user) if user
+    SessionBag.set_error(flash, "login fail") if !user
+
     redirect_to root_url
   end
   

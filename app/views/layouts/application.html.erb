@@ -10,8 +10,11 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container success">
+		<h1>Futbol</h1>
+	</div>
 	<% if SessionBag.get_error(flash) %>
-    <div class="error">
+    <div class="container error">
       <%= SessionBag.get_error(flash) %>
     </div>
 	<% end %>

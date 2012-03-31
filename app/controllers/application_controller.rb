@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
-  def set_current_user
-    User.current = current_user
-  end
 
+  def require_login
+    redirect_to root_url if !SessionBag.get_current_user(session)  
+  end
 end

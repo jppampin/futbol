@@ -1,16 +1,23 @@
+<br />
 <%= form_for @user, :url => users_login_path(@user) do |f| %>
 <fieldset>
 	<legend>Login</legend>
 	<p>
-	<%= f.label :name %> <br /> 
-	<%= f.text_field :name %>
+		<%= f.label :name %> <br /> 
+		<%= f.text_field :name %>
 	</p>
 	<p>
-	<%= f.label :password %> <br />
-	<%= f.password_field :password %>
+		<%= f.label :password %> <br />
+		<%= f.password_field :password %>
 	</p>
 	<p>
-	<%= f.submit "Submit" %>  
+		<%= f.submit "Submit" %>
+		<input name="Back" type="button" value="Back" onClick="javascript:history.go(-1);"/>
 	</p>
 </fieldset>
 <% end %>
+<script language="javascript">
+$(document).ready(function() {
+  $('#user_name').focus();
+});
+</script>

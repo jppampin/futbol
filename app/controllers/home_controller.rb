@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
-
-  def new
-    @user = User.new
-  end
-  
+  before_filter :require_login
+  skip_before_filter :require_login, :only => [:index, :login, :signup, :about]
+    
   def index
     @user = SessionBag.get_current_user(session)
   end
@@ -23,5 +21,4 @@ class HomeController < ApplicationController
   
   def about
   end
-  
 end
