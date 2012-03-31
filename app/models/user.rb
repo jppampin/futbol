@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :message => "password can't be blank"
   validates_confirmation_of :password, :message => "password should match confirmation"
   validates_length_of :password, :minimum => 3, :too_short => "password should have at least 3 characters"
+  
+  def admin?
+    self.name == "admin"
+  end
 end
