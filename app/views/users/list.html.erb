@@ -2,6 +2,7 @@
 	<caption><em>User's List</em></caption>
 	<thead>
 		<tr>
+			<th class="span-4">Score</th>
 			<th class="span-4">Email</th>
 			<th class="span-4">Name</th>
 			<th class="span-4 last">Password</th>
@@ -15,6 +16,7 @@
 	<tbody>
 		<% @users.each do |u| %>
 		<tr>
+			<td><%= u.score %></td>
 			<td><%= u.email %></td>
 			<td><%= u.name %></td>
 			<td><%= u.password %></td>

@@ -30,6 +30,7 @@ class HomeController < ApplicationController
 
     player = Player.new
     player.user = user
+    player.score = user.score
     user.players << player
     match.players << player
     match.save

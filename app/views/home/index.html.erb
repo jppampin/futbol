@@ -25,6 +25,7 @@
 	<thead>
 		<tr>
 			<th class="span-4">Position</th>
+			<th class="span-4">Score</th>
 			<th class="span-4">Name</th>
 			<th class="span-4">Status</th>
 			<% if @match.require_confirmation %>
@@ -38,10 +39,12 @@
 		</tr>
 	</tfoot>
 	<tbody>
-		<% @match.players.each do |p| %>
+		<% #@match.players.each do |p| %>
+		<% Player.find(:all, :conditions => ["match_id = ?", @match.id], :order => "score desc").each do |p| %>
 		<% position += 1 %>
 		<tr>
 			<td><%= position %></td>
+			<td><%= p.score %></td>
 			<td><%= p.user.name %></td>
 			<td>
 				<%= "CONFIRMED" if p.confirm %> 

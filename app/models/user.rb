@@ -14,4 +14,21 @@ class User < ActiveRecord::Base
   def admin?
     self.name == "admin"
   end
+  
+  def score
+    confirmed = 0.0
+    canceled = 0.0
+    
+    Player.find(:all, :conditions => ["user_id = ?", self.id]).each do |p|
+      confirmed +=1.0 if p.confirm
+      canceled +=1.0 if p.cancel
+      canceled +=2.0 if !p.cancel && !p.confirm 
+    end
+
+    if (confirmed + canceled) != 0
+      confirmed - canceled / Match.count 
+    else 
+      0 
+    end
+  end
 end
