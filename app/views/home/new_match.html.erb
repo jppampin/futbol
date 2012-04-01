@@ -1,0 +1,19 @@
+<br />
+<%= form_for @match, :url => matches_new_match_path(@match) do |f| %>
+<fieldset>
+	<legend>New Match</legend>
+	<p>
+		<%= f.label :name %> <br /> 
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.submit "Submit" %>
+		<input name="Back" type="button" value="Back" onClick="javascript:history.go(-1);"/>
+	</p>
+</fieldset>
+<% end %>
+<script language="javascript">
+$(document).ready(function() {
+  $('#match_name').focus();
+});
+</script>

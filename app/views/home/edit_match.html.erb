@@ -1,0 +1,24 @@
+<br />
+, :url => matches_edit_match_path
+<%= form_for(@match) do |f| %>
+<fieldset>
+	<legend>Edit Match</legend>
+	<p>
+		<%= f.label :name %> <br /> 
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.check_box :require_confirmation %> <%= f.label :require_confirmation %>
+		<%= f.check_box :closed %> <%= f.label :closed %>
+	</p>
+	<p>
+		<%= f.submit "Submit" %>
+		<input name="Back" type="button" value="Back" onClick="javascript:history.go(-1);"/>
+	</p>
+</fieldset>
+<% end %>
+<script language="javascript">
+$(document).ready(function() {
+  $('#match_name').focus();
+});
+</script>

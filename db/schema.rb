@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331052247) do
+ActiveRecord::Schema.define(:version => 20120331231603) do
 
   create_table "matches", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "name"
     t.boolean  "closed"
+    t.boolean  "require_confirmation"
   end
 
   create_table "players", :force => true do |t|

@@ -5,31 +5,31 @@
 	<%= link_to "Logout", :controller => "home", :action => "logout" if @user %>
 	<%= link_to "About", :controller => "home", :action => "about" %>
 	<%= mail_to "luis.capra@gmail.com", "Feedback", :encode => "javascript" if @user && !@user.admin? %>			
-	
 	<%= link_to "Users", users_list_path if @user && @user.admin? %>
 	<%= link_to "New Match", :controller => "home", :action => "new_match" if @user && @user.admin? %>
-		
 </div>
-
-
-
 <br />
 <br />
-
 <% if @match %>
 <% position = 0 %>
 <table border="0" cellspacing="0" cellpadding="0">
 	<caption>
-		<em>Last match status - "<b><%= @match.name %></b>"</em>
+		<em>
+			Current match: "<b><%= @match.name %></b>"
+			<%="(closed)" if @match.closed %>
+		</em>
 		<br />
-		<%= link_to "Add me!", :controller => "home", :action => "add_user_to_match" if @user && !@player %>
+		<%= link_to "Add me!", :controller => "home", :action => "add_user_to_match" if !@match.closed && @user && !@player %>
+		<%= link_to "Edit", home_edit_match_path(:match => @match.id) if @user && @user.admin? %>
 	</caption>
 	<thead>
 		<tr>
 			<th class="span-4">Position</th>
 			<th class="span-4">Name</th>
 			<th class="span-4">Status</th>
-			<th class="span-4 last">Actions</th>
+			<% if @match.require_confirmation %>
+			<th class="span-4">Actions</th>
+			<% end %>
 		</tr>
 	</thead>
 	<tfoot>
@@ -40,7 +40,6 @@
 	<tbody>
 		<% @match.players.each do |p| %>
 		<% position += 1 %>
-				<% @player = p %>
 		<tr>
 			<td><%= position %></td>
 			<td><%= p.user.name %></td>
@@ -49,14 +48,14 @@
 				<%= "CANCELLED" if p.cancel %> 
 				<%= "NEW" if !p.confirm && !p.cancel %> 
 			</td>
+			<%if @match.require_confirmation %>
 			<td>
 				<% if (!p.confirm && !p.cancel) || (@user && @user.admin?) %>
 				<%= link_to "Confirm", home_confirm_player_to_match_path(:player => p) if @user && !p.confirm %>
 				<%= link_to "Cancel", home_cancel_player_to_match_path(:player => p) if @user && !p.cancel %>
-				<% else %>
-					NONE
 				<% end %>
 			</td>
+			<% end %>
 		</tr>
 		<% end %>
 	</tbody>

@@ -45,6 +45,15 @@ class HomeController < ApplicationController
     set_player_confirmation(Player.find(params[:player]), false)
   end
 
+
+  def new_match
+    @match = Match.new
+  end
+  
+  def edit_match
+    @match = Match.find(params[:match])
+  end
+  
   private
   def set_player_confirmation(player, status)
     player.confirm = status
@@ -52,11 +61,6 @@ class HomeController < ApplicationController
     player.save
     
     redirect_to root_url
-  end
-
-
-  
-  def new_match
   end
   
 end
