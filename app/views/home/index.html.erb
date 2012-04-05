@@ -1,12 +1,14 @@
-<div class="span-24 last">
-	<%= link_to "[#{@user.name}]", home_edit_user_path(:user => @user.id) if @user %>
-	<%= link_to "Login", :controller => "home", :action => "login" if !@user %>
-	<%= link_to "Signup", :controller => "home", :action => "signup" if !@user %> 
-	<%= link_to "Logout", :controller => "home", :action => "logout" if @user %>
-	<%= link_to "About", :controller => "home", :action => "about" %>
-	<%= mail_to "luis.capra@gmail.com", "Feedback", :encode => "javascript" if @user && !@user.admin? %>			
-	<%= link_to "Users", users_list_path if @user && @user.admin? %>
-	<%= link_to "New Match", :controller => "home", :action => "new_match" if @user && @user.admin? %>
+<div class="prepend-top span-24 last">
+<div class="button-group">
+  <%= link_to_if @user, "[#{@user.name}]", home_edit_user_path(:user => @user.id), class: "button pill"  %>
+  <%= link_to_if @user, "Login", { :controller => "home", :action => "login" }, class: "button pill"  %>
+  <%= link_to_if @user, "Signup", { :controller => "home", :action => "signup"}, class: "button pill" %> 
+  <%= link_to_if @user, "Logout", { :controller => "home", :action => "logout" }, class: "button pill" %>
+  <%= link_to "About", { :controller => "home", :action => "about" }, class: "button pill" %>
+  <%= mail_to "luis.capra@gmail.com", "Feedback", :encode => "javascript" if @user && !@user.admin? %>			
+  <%= link_to_if @user && @user.admin?, "Users", users_list_path, class: "button pill" %>
+  <%= link_to_if @user && @user.admin?, "New Match", { :controller => "home", :action => "new_match" }, class: "button pill" %>
+</div>
 </div>
 <br />
 <br />
@@ -19,8 +21,10 @@
 			<%="(closed)" if @match.closed %>
 		</em>
 		<br />
-		<%= link_to "Add me!", :controller => "home", :action => "add_user_to_match" if !@match.closed && @user && !@player %>
-		<%= link_to "Edit", home_edit_match_path(:match => @match.id) if @user && @user.admin? %>
+                <div class="button-group">
+                <%= link_to_if !@match.closed && @user && !@player, "Add me!", { :controller => "home", :action => "add_user_to_match" }, class: "button" %>
+		<%= link_to_if @user && @user.admin?, "Edit", home_edit_match_path(:match => @match.id), class: "button" %>
+              </div>
 	</caption>
 	<thead>
 		<tr>
@@ -52,8 +56,10 @@
 			<%if @match.require_confirmation %>
 			<td>
 				<% if (!p.confirm && !p.cancel && @user && !@user.admin? && p.user == @user) || (@user && @user.admin?) %>
-				<%= link_to "Confirm", home_confirm_player_to_match_path(:player => p) if @user && !p.confirm %>
-				<%= link_to "Cancel", home_cancel_player_to_match_path(:player => p) if @user && !p.cancel %>
+                                <div class="button-group">
+				<%= link_to_if @user && !p.confirm, "Confirm", home_confirm_player_to_match_path(:player => p), class: "button icon approve" %>
+                                <%= link_to_if @user && !p.cancel, "Cancel", home_cancel_player_to_match_path(:player => p), class: "button danger icon remove"  %>
+                              </div>
 				<% end %>
 			</td>
 			<% end %>
