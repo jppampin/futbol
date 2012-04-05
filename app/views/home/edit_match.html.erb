@@ -1,5 +1,5 @@
 <br />
-<%= form_for(@match) do |f| %>
+<%= form_for @match do |f| %>
 <fieldset>
 	<legend>Edit Match</legend>
 	<p>
@@ -11,7 +11,7 @@
 		<%= f.check_box :closed %> <%= f.label :closed %>
 	</p>
 	<p>
-		<%= f.submit "Submit" %>
+		<%= f.submit "Submit", :disable_with => "..." %>
 		<input name="Back" type="button" value="Back" onClick="javascript:history.go(-1);"/>
 	</p>
 </fieldset>

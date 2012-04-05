@@ -1,5 +1,5 @@
 <div class="span-24 last">
-	<strong><%= "user: #{@user.name}" if @user %></strong>
+	<%= link_to "[#{@user.name}]", home_edit_user_path(:user => @user.id) if @user %>
 	<%= link_to "Login", :controller => "home", :action => "login" if !@user %>
 	<%= link_to "Signup", :controller => "home", :action => "signup" if !@user %> 
 	<%= link_to "Logout", :controller => "home", :action => "logout" if @user %>
@@ -39,12 +39,10 @@
 		</tr>
 	</tfoot>
 	<tbody>
-		<% #@match.players.each do |p| %>
-		<% Player.find(:all, :conditions => ["match_id = ?", @match.id], :order => "score desc").each do |p| %>
-		<% position += 1 %>
+		<% @players.each_with_index do |p, index| %>
 		<tr>
-			<td><%= position %></td>
-			<td><%= p.score %></td>
+			<td><%= index + 1 %></td>
+			<td><%= p.score.round(1) %></td>
 			<td><%= p.user.name %></td>
 			<td>
 				<%= "CONFIRMED" if p.confirm %> 
@@ -53,7 +51,7 @@
 			</td>
 			<%if @match.require_confirmation %>
 			<td>
-				<% if (!p.confirm && !p.cancel) || (@user && @user.admin?) %>
+				<% if (!p.confirm && !p.cancel && @user && !@user.admin? && p.user == @user) || (@user && @user.admin?) %>
 				<%= link_to "Confirm", home_confirm_player_to_match_path(:player => p) if @user && !p.confirm %>
 				<%= link_to "Cancel", home_cancel_player_to_match_path(:player => p) if @user && !p.cancel %>
 				<% end %>

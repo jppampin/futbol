@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_login
   before_filter :require_admin
   skip_before_filter :require_login, :only => [:create, :login]
-  skip_before_filter :require_admin, :only => [:create, :login]
+  skip_before_filter :require_admin, :only => [:create, :login, :update]
   
   def create
     user = User.new(params[:user])
@@ -13,6 +12,16 @@ class UsersController < ApplicationController
       SessionBag.set_error(flash, user.errors.first[1])
     end
 
+    redirect_to root_url
+  end
+  
+  def update
+    user = User.find(params[:id])
+    
+    if !user.update_attributes(params[:user])
+      SessionBag.set_error(flash, user.errors.first[1])
+    end
+  
     redirect_to root_url
   end
   

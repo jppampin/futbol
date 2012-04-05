@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
-  before_filter :require_login
   skip_before_filter :require_login, :only => [:index, :login, :signup, :about]
     
   def index
     @user = SessionBag.get_current_user(session)
     @match = Match.last
     @player = @match.players.find_by_user_id(@user.id) if @user
+    @players = Player.find(:all, :conditions => ["match_id = ?", @match.id], :order => "score desc")
   end
   
   def login
@@ -28,12 +28,14 @@ class HomeController < ApplicationController
     match = Match.last
     user = SessionBag.get_current_user(session)
 
-    player = Player.new
-    player.user = user
-    player.score = user.score
-    user.players << player
-    match.players << player
-    match.save
+    if !Player.find_by_user_id_and_match_id(user.id, match.id)
+      player = Player.new
+      player.user = user
+      player.score = user.score
+      user.players << player
+      match.players << player
+      match.save
+    end
     
     redirect_to root_url
   end
@@ -46,13 +48,16 @@ class HomeController < ApplicationController
     set_player_confirmation(Player.find(params[:player]), false)
   end
 
-
   def new_match
     @match = Match.new
   end
   
   def edit_match
     @match = Match.find(params[:match])
+  end
+
+  def edit_user
+    @user = User.find(params[:user])
   end
   
   private

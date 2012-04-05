@@ -13,6 +13,7 @@ Futbol::Application.routes.draw do
   get "home/confirm_player_to_match"
   get "home/new_match"
   get "home/edit_match"
+  get "home/edit_user"
   get "users/list"
 
   match "users/login", :to => "users#login"

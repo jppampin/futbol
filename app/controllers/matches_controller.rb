@@ -1,23 +1,23 @@
 class MatchesController < ApplicationController
-
-def new_match
-  match = Match.new(params[:match])
+  before_filter :require_admin
   
-  if !match.save
-    SessionBag.set_error(flash, match.errors.first[1])
+  def new_match
+    match = Match.new(params[:match])
+  
+    if !match.save
+      SessionBag.set_error(flash, match.errors.first[1])
+    end
+  
+    redirect_to root_url
   end
-  
-  redirect_to root_url
-end
 
-def update
-  match = Match.find(params[:id])
+  def update
+    match = Match.find(params[:id])
   
-  if !match.update_attributes(params[:match])
-    SessionBag.set_error(flash, match.errors.first[1])
+    if !match.update_attributes(params[:match])
+      SessionBag.set_error(flash, match.errors.first[1])
+    end
+  
+    redirect_to root_url
   end
-  
-  redirect_to root_url
-end
-
 end

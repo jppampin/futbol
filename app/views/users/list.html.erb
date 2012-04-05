@@ -16,7 +16,7 @@
 	<tbody>
 		<% @users.each do |u| %>
 		<tr>
-			<td><%= u.score %></td>
+			<td><%= u.score.round(1) %></td>
 			<td><%= u.email %></td>
 			<td><%= u.name %></td>
 			<td><%= u.password %></td>

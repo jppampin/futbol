@@ -1,0 +1,33 @@
+TEST PENDING -> Evitar doble click
+DONE -> Un usuario no puede confirmar a otro usuario
+DONE -> El nombre de usuario debería ser de dos caracteres mínimo
+DONE -> Round en los scores
+DONE -> refactor: Player.find(:all, :conditions => ["match_id = ?", @match.id], :order => "score desc") -> en el controller
+DONE -> User Profile Edition
+
+
+REGRESSION TEST
+
+El SessionBag deberia ser un accessor del ApplicationController
+
+http://www.ajaxbestiary.com/Labs/SilkSprite/
+https://github.com/joshuaclayton/blueprint-css/wiki/Plugins
+https://github.com/pstuteville/sliding_session_timeout/blob/master/lib/sliding_session_timeout.rb
+Poder ver partidas pasadas
+Encriptar password
+Notificaciones ante nuevo partido
+Notificaciones para confirmar
+Notificaciones cuando se cierra la inscripcion y confirmacion
+Un usuario puede ingresar uno o mas comentarios a un partido
+Los usuarios deberian ver un banner grafico
+Los estados deberian ser iconos graficos
+Poner Unicorn: http://michaelvanrooijen.com/articles/2011/06/01-more-concurrency-on-a-single-heroku-dyno-with-the-new-celadon-cedar-stack/
+Estrategia de caching
+Un usuario deberia poder subir su foto
+La session del usuario deberia expirar a los 15 minutos de inactividad
+
+http://stormy-earth-7600.herokuapp.com <http://stormy-earth-7600.herokuapp.com/> 
+- Las reglas deberían estar publicadas
+- Current match debería indicar la fecha, hora y lugar
+- Foro para decir boludeces antes del partido o que la cancha de tu hermana tenga su tuitter para publicar las boludeces que decimos (si lo haces me convences para abrir una cuenta en twitter :P)
+- login por username o email
