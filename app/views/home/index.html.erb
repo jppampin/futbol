@@ -1,13 +1,17 @@
-<div class="prepend-top span-24 last">
+<div class="prepend-top append-bottom span-24 last">
+<div class="button-container">
+  <%= link_to("[#{@user.name if @user}]", home_edit_user_path(:user => (@user.id if @user)), class: "button pill") if @user  %>
 <div class="button-group">
-  <%= link_to_if @user, "[#{@user.name}]", home_edit_user_path(:user => @user.id), class: "button pill"  %>
-  <%= link_to_if @user, "Login", { :controller => "home", :action => "login" }, class: "button pill"  %>
-  <%= link_to_if @user, "Signup", { :controller => "home", :action => "signup"}, class: "button pill" %> 
-  <%= link_to_if @user, "Logout", { :controller => "home", :action => "logout" }, class: "button pill" %>
+  <%= link_to "Login", { :controller => "home", :action => "login" }, class: "button pill" %>
+  <%= link_to "Signup", { :controller => "home", :action => "signup"}, class: "button pill" %> 
+  <%= link_to "Logout", { :controller => "home", :action => "logout" }, class: "button pill" %>
+</div>
   <%= link_to "About", { :controller => "home", :action => "about" }, class: "button pill" %>
+<div class="button-group">
   <%= mail_to "luis.capra@gmail.com", "Feedback", :encode => "javascript" if @user && !@user.admin? %>			
-  <%= link_to_if @user && @user.admin?, "Users", users_list_path, class: "button pill" %>
-  <%= link_to_if @user && @user.admin?, "New Match", { :controller => "home", :action => "new_match" }, class: "button pill" %>
+  <%= link_to("Users", users_list_path, class: "button pill") if @user && @user.admin? %>
+  <%= link_to("New Match", { :controller => "home", :action => "new_match" }, class: "button pill") if @user && @user.admin? %>
+</div>
 </div>
 </div>
 <br />
