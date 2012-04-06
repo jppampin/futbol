@@ -264,7 +264,9 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
 .shadow {
-  -moz-box-shadow: 5px 5px 5px #ccc;
-  -webkit-box-shadow: 5px 5px 5px #ccc;
-  box-shadow: 5px 5px 5px #ccc;
+  -moz-box-shadow: 0 0 8px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 0 8px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 8px 2px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  border: 1px solid #ddd;
 }

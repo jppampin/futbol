@@ -1,3 +1,33 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'buttons'; 
+
+$light-green: #96BA5A;
+$green: #84B154;
+$dark-green:#5AAC7B;
+$blue:#4BC1DD;
+$white:#FFF;
+$black:#000;
+
+body{
+ background-color: $light-green !important;
+}
+
+h2 {
+  text-shadow: 1px 1px 1px #000 !important;
+  color: $white !important;
+}
+
+a, [type=submit], [type=button], button {
+  @extend .button;
+}
+
+.backwhite{
+ background-color: $white;
+}
+.shade {
+ height: 42px;
+ background: #3A3A3A url(global-sprite.png) repeat-x scroll 0 -19px;
+}
+

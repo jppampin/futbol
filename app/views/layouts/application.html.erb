@@ -3,23 +3,28 @@
 <head>
 	<title>La Cancha de tu hermana!</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= stylesheet_link_tag    "screen", :media => "screen, projection" %>
+	<%= stylesheet_link_tag    "print", :media => "print" %>
+	<!–[if IE]><%= stylesheet_link_tag    "ie", :media => "screen, projection" %><![endif]–>
   	<%= javascript_include_tag "application" %>
-	<link rel=”stylesheet” href=”stylesheets/blueprint/screen.css” type=”text/css” media=”screen, projection”>
-	<link rel=”stylesheet” href=”stylesheets/blueprint/print.css” type=”text/css” media=”print”>
-	<!–[if IE]><link rel=”stylesheet” href=”stylesheets/blueprint/ie.css” type=”text/css” media=”screen, projection”><![endif]–>
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="container success shadow">
-		<h1>Futbol</h1>
+  <div class="backgreen shade">
+	<div class="container">
+          <div class="prepend-1 span-23">
+		<h2>Futbol</h2>
+	  </div>
 	</div>
-	<% if SessionBag.get_error(flash) %>
+  </div>
+        <br/>
+    <% if SessionBag.get_error(flash) %>
     <div class="container error">
       <%= SessionBag.get_error(flash) %>
     </div>
-	<% end %>
-	<div class="container">
+    <% end %>
+    <div class="container ">
 		<%= yield %>
-	</div>
+    </div>
 </body>
 </html>
