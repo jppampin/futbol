@@ -62,8 +62,8 @@
 			<td>
 				<% if (!p.confirm && !p.cancel && @user && !@user.admin? && p.user == @user) || (@user && @user.admin?) %>
                                 <div class="button-group">
-				<%= link_to_if @user && !p.confirm, "Confirm", home_confirm_player_to_match_path(:player => p), class: "button icon approve" %>
-                                <%= link_to_if @user && !p.cancel, "Cancel", home_cancel_player_to_match_path(:player => p), class: "button danger icon remove"  %>
+				<%= link_to "Confirm", home_confirm_player_to_match_path(:player => p), class: "button icon approve" if @user && !p.confirm%>
+                                <%= link_to "Cancel", home_cancel_player_to_match_path(:player => p), class: "button danger icon remove" if @user && !p.cancel  %>
                               </div>
 				<% end %>
 			</td>
